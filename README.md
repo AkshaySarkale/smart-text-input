@@ -3,6 +3,31 @@
 A reusable Flutter smart text input widget with built-in validations and customizable UI.
 
 ---
+## When To Use
+
+Use `SmartTextInput` when you need:
+
+* Login Forms
+* Signup Forms
+* OTP Verification Screens
+* Mobile Number Inputs
+* Email Inputs
+* Password Inputs
+* Reusable Form Components
+* Built-in Validations
+* Clean and Consistent Input UI
+
+This package helps reduce repetitive form validation code and provides a reusable smart text field solution for Flutter applications.
+
+## Perfect For
+
+✅ Authentication Screens
+✅ Admin Panels
+✅ Enterprise Apps
+✅ Form-Based Applications
+✅ Fast Flutter Development
+✅ Reusable UI Systems
+
 
 # Features
 
@@ -91,10 +116,6 @@ SmartTextInput(
 ```
 
 ---
-
-# Author
-
-Akshay Sarkale
 
 # MIT License
 
