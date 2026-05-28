@@ -102,6 +102,14 @@ class SmartTextInput extends StatelessWidget {
           color: hintTextCol ?? Colors.grey,
           fontStyle: FontStyle.italic,
         ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            color: Colors.greenAccent,
+            width: 2,
+          ),
+        ),
+
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
