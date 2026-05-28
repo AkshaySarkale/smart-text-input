@@ -29,22 +29,51 @@ This package helps reduce repetitive form validation code and provides a reusabl
 ✅ Reusable UI Systems
 
 
-# Features
+## Features
 
-✅ Built-in Email Validation
-✅ Mobile Number Validation
-✅ OTP Validation
-✅ Password Validation
-✅ Password Visibility Toggle
-✅ Prefix & Suffix Icons
-✅ Custom Validator Support
-✅ Read Only Mode
-✅ Enable/Disable Field
-✅ Input Formatter Support
-✅ Focus & Error Border Colors
-✅ Counter Text Hide/Show
+| Feature             | Supported |
+| ------------------- | --------- |
+| Email Validation    | ✅         |
+| Password Validation | ✅         |
+| OTP Validation      | ✅         |
+| Mobile Validation   | ✅         |
+| Prefix Icon         | ✅         |
+| Suffix Icon         | ✅         |
+| Custom Validator    | ✅         |
+| Focus Border Color  | ✅         |
+| Error Border Color  | ✅         |
+| Password Toggle     | ✅         |
 
 ---
+## Parameters
+
+| Parameter             | Type                       | Default  | Description                         |
+| --------------------- | -------------------------- | -------- | ----------------------------------- |
+| txtCtrl               | TextEditingController      | Required | Controller for text input           |
+| validator             | String? Function(String?)? | null     | Custom validation function          |
+| autovalidateMode      | AutovalidateMode?          | null     | Controls auto validation behavior   |
+| isPassword            | bool                       | false    | Enables password mode               |
+| isGmail               | bool                       | false    | Enables email keyboard & validation |
+| isMobNumber           | bool                       | false    | Enables mobile number validation    |
+| isOtp                 | bool                       | false    | Enables OTP validation              |
+| hintText              | String                     | ""       | Custom hint text                    |
+| labelText             | String                     | ""       | Custom label text                   |
+| isLabelText           | bool                       | false    | Show label text                     |
+| readOnly              | bool                       | false    | Makes field read only               |
+| enabled               | bool                       | true     | Enable/disable text field           |
+| defaultMobileLength   | int                        | 10       | Mobile number length                |
+| otpDigit              | int                        | 6        | OTP digit length                    |
+| minimunPasswordlenght | int                        | 6        | Minimum password length             |
+| showCounterText       | bool                       | false    | Show/hide max length counter        |
+| showprefixIcon        | bool                       | false    | Show prefix icon                    |
+| prefixIcon            | IconData?                  | null     | Custom prefix icon                  |
+| showSuffixIcon        | bool                       | false    | Show suffix icon                    |
+| suffixIcon            | IconData?                  | null     | Custom suffix icon                  |
+| onSuffixTap           | VoidCallback?              | null     | Callback for suffix icon tap        |
+| hintTextCol           | Color?                     | grey     | Hint text color                     |
+| focusBorderColor      | Color?                     | green    | Focus border color                  |
+| errorBorderColor      | Color?                     | red      | Error border color                  |
+
 
 # Installation
 
