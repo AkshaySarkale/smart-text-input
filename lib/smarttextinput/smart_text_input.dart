@@ -14,8 +14,12 @@ class SmartTextInput extends StatelessWidget {
   final String labelText;
   final bool readOnly;
   final int defaultMobileLength;
+  final bool showSuffixIcon;
+  final IconData? suffixIcon;
+  final VoidCallback? onSuffixTap;
   final int otpDigit;
   final bool isOtp;
+  final bool enabled;
   final bool showprefixIcon;
   final IconData? prefixIcon;
   final int minimunPasswordlenght;
@@ -40,18 +44,22 @@ class SmartTextInput extends StatelessWidget {
     this.isOtp = false,
     this.showprefixIcon = false,
     this.prefixIcon,
+    this.enabled = true,
     this.minimunPasswordlenght = 6,
     this.showCounterText = false,
     this.focusBorderColor,
     this.errorBorderColor,
     this.autovalidateMode,
+    this.showSuffixIcon=false,
+    this.suffixIcon,
+    this.onSuffixTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: txtCtrl,
-      obscureText: isPassword,
+      obscureText: isPassword ? true : false,
       validator:
           validator ??
           (value) {
@@ -122,7 +130,7 @@ class SmartTextInput extends StatelessWidget {
           ),
         ),
 
-        errorBorder: OutlineInputBorder(
+        focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
             color: errorBorderColor ?? Colors.red,
