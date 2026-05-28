@@ -16,6 +16,7 @@ class SmartTextInput extends StatelessWidget {
   final bool showprefixIcon;
   final IconData? prefixIcon;
   final int minimunPasswordlenght;
+  final bool showCounterText;
 
   const SmartTextInput({
     super.key,
@@ -34,13 +35,15 @@ class SmartTextInput extends StatelessWidget {
     this.showprefixIcon = false,
     this.prefixIcon,
     this.minimunPasswordlenght = 6,
+    this.showCounterText=false
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: txtCtrl,
       obscureText: isPassword,
+      enabled: false,
       keyboardType: isGmail
           ? TextInputType.emailAddress
           : isMobNumber
@@ -53,6 +56,7 @@ class SmartTextInput extends StatelessWidget {
           ? otpDigit
           : isPassword ? minimunPasswordlenght : null,
       decoration: InputDecoration(
+        counterText: showCounterText ? null : "",
         prefixIcon: showprefixIcon && prefixIcon != null
             ? Icon(prefixIcon)
             : isGmail
