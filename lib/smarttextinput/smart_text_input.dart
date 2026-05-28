@@ -15,6 +15,7 @@ class SmartTextInput extends StatelessWidget {
   final bool isOtp;
   final bool showprefixIcon;
   final IconData? prefixIcon;
+  final int minimunPasswordlenght;
 
   const SmartTextInput({
     super.key,
@@ -32,6 +33,7 @@ class SmartTextInput extends StatelessWidget {
     this.isOtp = false,
     this.showprefixIcon = false,
     this.prefixIcon,
+    this.minimunPasswordlenght = 6,
   });
 
   @override
@@ -45,14 +47,20 @@ class SmartTextInput extends StatelessWidget {
           ? TextInputType.number
           : TextInputType.text,
       readOnly: readOnly,
-      minLines: isPassword ? 6 : null,
-      maxLength: isMobNumber
+      minLines: isPassword
+          ? minimunPasswordlenght
+          : isMobNumber
           ? defaultMobileLength
           : isOtp
           ? otpDigit
           : null,
+      maxLength: isMobNumber
+          ? defaultMobileLength
+          : isOtp
+          ? otpDigit
+          : isPassword ? minimunPasswordlenght : null,
       decoration: InputDecoration(
-        prefixIcon: showprefixIcon && prefixIcon !=null
+        prefixIcon: showprefixIcon && prefixIcon != null
             ? Icon(prefixIcon)
             : isGmail
             ? const Icon(Icons.email_outlined)
