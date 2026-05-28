@@ -4,6 +4,7 @@ class SmartTextInput extends StatelessWidget {
   final TextEditingController txtCtrl;
   final bool isPassword;
   final bool isGmail;
+  final String hintText;
   final bool isMobNumber;
 
   const SmartTextInput({
@@ -12,6 +13,7 @@ class SmartTextInput extends StatelessWidget {
     this.isPassword = false,
     this.isGmail = false,
     this.isMobNumber = false,
+    this.hintText = "",
   });
 
   @override
@@ -25,7 +27,16 @@ class SmartTextInput extends StatelessWidget {
           ? TextInputType.number
           : TextInputType.text,
       decoration: InputDecoration(
-        border: OutlineInputBorder()
+        hintText: hintText.isNotEmpty
+            ? hintText
+            : isPassword
+            ? "Enter Password"
+            : isMobNumber
+            ? "Enter 10 Digit Mobile Number"
+            : isGmail
+            ? "Enter Gmail"
+            : null,
+        border: OutlineInputBorder(),
       ),
     );
   }
