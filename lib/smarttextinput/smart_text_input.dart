@@ -20,10 +20,11 @@ class SmartTextInput extends StatelessWidget {
   final IconData? prefixIcon;
   final int minimunPasswordlenght;
   final bool showCounterText;
+  final Color? focusBorderColor;
+  final Color? errorBorderColor;
 
   const SmartTextInput({
     super.key,
-    this.autovalidateMode,
     required this.txtCtrl,
     this.isPassword = false,
     this.validator,
@@ -40,7 +41,10 @@ class SmartTextInput extends StatelessWidget {
     this.showprefixIcon = false,
     this.prefixIcon,
     this.minimunPasswordlenght = 6,
-    this.showCounterText=false
+    this.showCounterText = false,
+    this.focusBorderColor,
+    this.errorBorderColor,
+    this.autovalidateMode,
   });
 
   @override
@@ -48,37 +52,39 @@ class SmartTextInput extends StatelessWidget {
     return TextFormField(
       controller: txtCtrl,
       obscureText: isPassword,
-      validator: validator ?? (value){
-        if(value == null || value.trim().isEmpty){
-          return "This field is required";
-        }
-        if (isGmail) {
-          if (!RegExp(
-            r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-          ).hasMatch(value)) {
-            return "Enter valid email";
-          }
-        }
-        if(isMobNumber){
-          if(value.length != defaultMobileLength ){
-            return "Enter Valid Mobile Number";
-          }
-        }
-        if(isPassword){
-          if(value.length != minimunPasswordlenght){
-            return "Enter Valid Password";
-          }
-        }
-        if(isOtp){
-          if(value.length != otpDigit){
-            return "Enter Valid Otp";
-          }
-        }
-        return null;
-      },
-      inputFormatters: isMobNumber || isOtp ? [
-        FilteringTextInputFormatter.digitsOnly
-      ] :null,
+      validator:
+          validator ??
+          (value) {
+            if (value == null || value.trim().isEmpty) {
+              return "This field is required";
+            }
+            if (isGmail) {
+              if (!RegExp(
+                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+              ).hasMatch(value)) {
+                return "Enter valid email";
+              }
+            }
+            if (isMobNumber) {
+              if (value.length != defaultMobileLength) {
+                return "Enter Valid Mobile Number";
+              }
+            }
+            if (isPassword) {
+              if (value.length != minimunPasswordlenght) {
+                return "Enter Valid Password";
+              }
+            }
+            if (isOtp) {
+              if (value.length != otpDigit) {
+                return "Enter Valid Otp";
+              }
+            }
+            return null;
+          },
+      inputFormatters: isMobNumber || isOtp
+          ? [FilteringTextInputFormatter.digitsOnly]
+          : null,
       autovalidateMode: autovalidateMode,
       keyboardType: isGmail
           ? TextInputType.emailAddress
@@ -90,7 +96,9 @@ class SmartTextInput extends StatelessWidget {
           ? defaultMobileLength
           : isOtp
           ? otpDigit
-          : isPassword ? minimunPasswordlenght : null,
+          : isPassword
+          ? minimunPasswordlenght
+          : null,
       decoration: InputDecoration(
         counterText: showCounterText ? null : "",
         prefixIcon: showprefixIcon && prefixIcon != null
@@ -109,7 +117,7 @@ class SmartTextInput extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: Colors.greenAccent,
+            color: focusBorderColor ?? Colors.greenAccent,
             width: 2,
           ),
         ),
@@ -117,9 +125,9 @@ class SmartTextInput extends StatelessWidget {
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: Colors.red,
-            width: 2
-          )
+            color: errorBorderColor ?? Colors.red,
+            width: 2,
+          ),
         ),
         labelText: isLabelText
             ? labelText.isNotEmpty
