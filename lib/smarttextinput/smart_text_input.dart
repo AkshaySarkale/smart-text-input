@@ -47,13 +47,6 @@ class SmartTextInput extends StatelessWidget {
           ? TextInputType.number
           : TextInputType.text,
       readOnly: readOnly,
-      minLines: isPassword
-          ? minimunPasswordlenght
-          : isMobNumber
-          ? defaultMobileLength
-          : isOtp
-          ? otpDigit
-          : null,
       maxLength: isMobNumber
           ? defaultMobileLength
           : isOtp
