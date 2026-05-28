@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class SmartTextInput extends StatelessWidget {
   final TextEditingController txtCtrl;
+  final String? Function(String?)? validator;
   final bool isPassword;
   final bool isGmail;
   final String hintText;
@@ -22,6 +23,7 @@ class SmartTextInput extends StatelessWidget {
     super.key,
     required this.txtCtrl,
     this.isPassword = false,
+    this.validator,
     this.isGmail = false,
     this.isMobNumber = false,
     this.hintText = "",
@@ -43,7 +45,8 @@ class SmartTextInput extends StatelessWidget {
     return TextFormField(
       controller: txtCtrl,
       obscureText: isPassword,
-      enabled: false,
+      validator: validator,
+
       keyboardType: isGmail
           ? TextInputType.emailAddress
           : isMobNumber
