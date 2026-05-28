@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SmartTextInput extends StatelessWidget {
   final TextEditingController txtCtrl;
@@ -75,6 +76,9 @@ class SmartTextInput extends StatelessWidget {
         }
         return null;
       },
+      inputFormatters: isMobNumber || isOtp ? [
+        FilteringTextInputFormatter.digitsOnly
+      ] :null,
       autovalidateMode: autovalidateMode,
       keyboardType: isGmail
           ? TextInputType.emailAddress
