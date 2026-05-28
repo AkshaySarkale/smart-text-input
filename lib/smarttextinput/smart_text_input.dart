@@ -6,6 +6,11 @@ class SmartTextInput extends StatelessWidget {
   final bool isGmail;
   final String hintText;
   final bool isMobNumber;
+  final Color? hintTextCol;
+  final bool isLabelText;
+  final String labelText;
+  final bool readOnly;
+  final int defaultMobileLength;
 
   const SmartTextInput({
     super.key,
@@ -14,6 +19,11 @@ class SmartTextInput extends StatelessWidget {
     this.isGmail = false,
     this.isMobNumber = false,
     this.hintText = "",
+    this.hintTextCol,
+    this.isLabelText = false,
+    this.labelText = "",
+    this.readOnly = false,
+    this.defaultMobileLength = 10,
   });
 
   @override
@@ -26,7 +36,22 @@ class SmartTextInput extends StatelessWidget {
           : isMobNumber
           ? TextInputType.number
           : TextInputType.text,
+      readOnly: false,
+      maxLength: isMobNumber ? defaultMobileLength : null,
       decoration: InputDecoration(
+        hintStyle: TextStyle(
+          color: hintTextCol ?? Colors.grey,
+          fontStyle: FontStyle.italic,
+        ),
+        labelText: isLabelText ? labelText.isNotEmpty
+            ? labelText
+            : isPassword
+            ? "Password"
+            : isMobNumber
+            ? "Mobile Number"
+            : isGmail
+            ? "Gmail"
+            : null : null,
         hintText: hintText.isNotEmpty
             ? hintText
             : isPassword
@@ -36,7 +61,9 @@ class SmartTextInput extends StatelessWidget {
             : isGmail
             ? "Enter Gmail"
             : null,
-        border: OutlineInputBorder(),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(style: BorderStyle.solid),
+        ),
       ),
     );
   }
