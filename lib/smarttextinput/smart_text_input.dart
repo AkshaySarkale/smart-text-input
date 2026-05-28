@@ -13,8 +13,8 @@ class SmartTextInput extends StatelessWidget {
   final int defaultMobileLength;
   final int otpDigit;
   final bool isOtp;
-  final bool isSuffixIcon;
-  final IconData? suffixIcon;
+  final bool showprefixIcon;
+  final IconData? prefixIcon;
 
   const SmartTextInput({
     super.key,
@@ -30,8 +30,8 @@ class SmartTextInput extends StatelessWidget {
     this.defaultMobileLength = 10,
     this.otpDigit = 6,
     this.isOtp = false,
-    this.isSuffixIcon = false,
-    this.suffixIcon,
+    this.showprefixIcon = false,
+    this.prefixIcon,
   });
 
   @override
@@ -51,8 +51,8 @@ class SmartTextInput extends StatelessWidget {
           ? otpDigit
           : null,
       decoration: InputDecoration(
-        suffixIcon: isSuffixIcon
-            ? Icon(suffixIcon)
+        prefixIcon: showprefixIcon
+            ? Icon(prefixIcon)
             : isGmail
             ? const Icon(Icons.email_outlined)
             : isMobNumber
