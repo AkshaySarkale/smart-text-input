@@ -44,7 +44,7 @@ class SmartTextInput extends StatelessWidget {
           : isMobNumber
           ? TextInputType.number
           : TextInputType.text,
-      readOnly: false,
+      readOnly: readOnly,
       maxLength: isMobNumber
           ? defaultMobileLength
           : isOtp
