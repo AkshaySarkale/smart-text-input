@@ -47,7 +47,34 @@ class SmartTextInput extends StatelessWidget {
     return TextFormField(
       controller: txtCtrl,
       obscureText: isPassword,
-      validator: validator,
+      validator: validator ?? (value){
+        if(value == null || value.trim().isEmpty){
+          return "This field is required";
+        }
+        if (isGmail) {
+          if (!RegExp(
+            r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+          ).hasMatch(value)) {
+            return "Enter valid email";
+          }
+        }
+        if(isMobNumber){
+          if(value.length != defaultMobileLength ){
+            return "Enter Valid Mobile Number";
+          }
+        }
+        if(isPassword){
+          if(value.length != minimunPasswordlenght){
+            return "Enter Valid Password";
+          }
+        }
+        if(isOtp){
+          if(value.length != otpDigit){
+            return "Enter Valid Otp";
+          }
+        }
+        return null;
+      },
       autovalidateMode: autovalidateMode,
       keyboardType: isGmail
           ? TextInputType.emailAddress
@@ -74,6 +101,13 @@ class SmartTextInput extends StatelessWidget {
         hintStyle: TextStyle(
           color: hintTextCol ?? Colors.grey,
           fontStyle: FontStyle.italic,
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            color: Colors.red,
+            width: 2
+          )
         ),
         labelText: isLabelText
             ? labelText.isNotEmpty
