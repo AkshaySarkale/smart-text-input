@@ -2,30 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SmartTextInput extends StatefulWidget {
+  /// String values
   final TextEditingController txtCtrl;
-  final String? Function(String?)? validator;
+  final String hintText;
+  final String labelText;
+
   final AutovalidateMode? autovalidateMode;
+
+  /// boolean Values
   final bool isPassword;
   final bool isGmail;
   final bool isMobNumber;
   final bool isOtp;
-  final String hintText;
-  final Color? hintTextCol;
   final bool isLabelText;
-  final String labelText;
   final bool readOnly;
   final bool enabled;
+  final bool showCounterText;
+  final bool showprefixIcon;
+  final bool showSuffixIcon;
+  ///Color Values
+  final Color? hintTextCol;
+  final Color? focusBorderColor;
+  final Color? errorBorderColor;
+  /// int values
   final int defaultMobileLength;
   final int otpDigit;
   final int minimunPasswordlenght;
-  final bool showCounterText;
-  final bool showprefixIcon;
+
+  /// icons
   final IconData? prefixIcon;
-  final bool showSuffixIcon;
   final IconData? suffixIcon;
+
+  ///user-side functions
   final VoidCallback? onSuffixTap;
-  final Color? focusBorderColor;
-  final Color? errorBorderColor;
+  final String? Function(String?)? validator;
+
 
   const SmartTextInput({
     super.key,
@@ -77,10 +88,8 @@ class _SmartTextInputState extends State<SmartTextInput> {
         FilteringTextInputFormatter.digitsOnly,
       ] : null,
 
-      maxLength: widget.isMobNumber
-          ? widget.defaultMobileLength
-          : widget.isOtp
-          ? widget.otpDigit
+      maxLength: widget.isMobNumber ? widget.defaultMobileLength
+          : widget.isOtp ? widget.otpDigit
           : null,
 
       validator: widget.validator ??
@@ -96,9 +105,7 @@ class _SmartTextInputState extends State<SmartTextInput> {
               }
             }
             if (widget.isMobNumber) {
-              if (value.length < widget.defaultMobileLength) {
-                return "Enter Valid Mobile Number";
-              }
+              if (value.length < widget.defaultMobileLength) return "Enter Valid Mobile Number";
             }
             if (widget.isPassword) {
               if (value.length < widget.minimunPasswordlenght) {
@@ -116,12 +123,9 @@ class _SmartTextInputState extends State<SmartTextInput> {
         counterText: widget.showCounterText ? null : "",
         prefixIcon: widget.showprefixIcon && widget.prefixIcon != null
             ? Icon(widget.prefixIcon)
-            : widget.isGmail
-            ? const Icon(Icons.email_outlined)
-            : widget.isMobNumber
-            ? const Icon(Icons.phone_outlined)
-            : widget.isPassword
-            ? const Icon(Icons.lock_outline)
+            : widget.isGmail ? const Icon(Icons.email_outlined)
+            : widget.isMobNumber ? const Icon(Icons.phone_outlined)
+            : widget.isPassword ? const Icon(Icons.lock_outline)
             : null,
 
         suffixIcon: widget.isPassword
@@ -152,12 +156,9 @@ class _SmartTextInputState extends State<SmartTextInput> {
         labelText: widget.isLabelText
             ? widget.labelText.isNotEmpty
             ? widget.labelText
-            : widget.isPassword
-            ? "Password"
-            : widget.isMobNumber
-            ? "Mobile Number"
-            : widget.isGmail
-            ? "Email"
+            : widget.isPassword ? "Password"
+            : widget.isMobNumber ? "Mobile Number"
+            : widget.isGmail ? "Email"
             : null
             : null,
 
