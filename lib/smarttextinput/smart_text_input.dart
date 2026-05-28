@@ -13,6 +13,8 @@ class SmartTextInput extends StatelessWidget {
   final int defaultMobileLength;
   final int otpDigit;
   final bool isOtp;
+  final bool isSuffixIcon;
+  final IconData suffixIcon;
 
   const SmartTextInput({
     super.key,
@@ -26,8 +28,10 @@ class SmartTextInput extends StatelessWidget {
     this.labelText = "",
     this.readOnly = false,
     this.defaultMobileLength = 10,
-    this.otpDigit=6,
-    this.isOtp=false,
+    this.otpDigit = 6,
+    this.isOtp = false,
+    this.isSuffixIcon = false,
+    required this.suffixIcon,
   });
 
   @override
@@ -41,21 +45,36 @@ class SmartTextInput extends StatelessWidget {
           ? TextInputType.number
           : TextInputType.text,
       readOnly: false,
-      maxLength: isMobNumber ? defaultMobileLength : isOtp ? otpDigit : null,
+      maxLength: isMobNumber
+          ? defaultMobileLength
+          : isOtp
+          ? otpDigit
+          : null,
       decoration: InputDecoration(
+        suffixIcon: isSuffixIcon
+            ? Icon(suffixIcon)
+            : isGmail
+            ? const Icon(Icons.email_outlined)
+            : isMobNumber
+            ? const Icon(Icons.phone_outlined)
+            : isPassword
+            ? const Icon(Icons.password)
+            : null,
         hintStyle: TextStyle(
           color: hintTextCol ?? Colors.grey,
           fontStyle: FontStyle.italic,
         ),
-        labelText: isLabelText ? labelText.isNotEmpty
-            ? labelText
-            : isPassword
-            ? "Password"
-            : isMobNumber
-            ? "Mobile Number"
-            : isGmail
-            ? "Gmail"
-            : null : null,
+        labelText: isLabelText
+            ? labelText.isNotEmpty
+                  ? labelText
+                  : isPassword
+                  ? "Password"
+                  : isMobNumber
+                  ? "Mobile Number"
+                  : isGmail
+                  ? "Gmail"
+                  : null
+            : null,
         hintText: hintText.isNotEmpty
             ? hintText
             : isPassword
