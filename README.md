@@ -1,39 +1,97 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Smart Text Input
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A reusable Flutter smart text input widget with built-in validations and customizable UI.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+---
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+# Features
 
-## Features
+✅ Built-in Email Validation
+✅ Mobile Number Validation
+✅ OTP Validation
+✅ Password Validation
+✅ Password Visibility Toggle
+✅ Prefix & Suffix Icons
+✅ Custom Validator Support
+✅ Read Only Mode
+✅ Enable/Disable Field
+✅ Input Formatter Support
+✅ Focus & Error Border Colors
+✅ Counter Text Hide/Show
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+---
 
-## Getting started
+# Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add dependency in `pubspec.yaml`
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  my_flutter_customtextfeild:
+    git:
+      url: https://github.com/AkshaySarkale/librariy_flutter_customtextfeild.git
 ```
 
-## Additional information
+---
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+# Import
+
+```dart
+import 'package:my_flutter_customtextfeild/smart_text_input.dart';
+```
+
+---
+
+# Email Field Example
+
+```dart
+SmartTextInput(
+  txtCtrl: emailController,
+  isGmail: true,
+  isLabelText: true,
+)
+```
+
+---
+
+# Password Field Example
+
+```dart
+SmartTextInput(
+  txtCtrl: passwordController,
+  isPassword: true,
+)
+```
+
+---
+
+# Mobile Number Example
+
+```dart
+SmartTextInput(
+  txtCtrl: mobileController,
+  isMobNumber: true,
+)
+```
+
+---
+
+# Custom Validation Example
+
+```dart
+SmartTextInput(
+  txtCtrl: nameController,
+  validator: (value) {
+    if(value == null || value.isEmpty){
+      return "Name Required";
+    }
+    return null;
+  },
+)
+```
+
+---
+
+# Author
+
+Akshay Sarkale
