@@ -14,7 +14,7 @@ class SmartTextInput extends StatelessWidget {
   final int otpDigit;
   final bool isOtp;
   final bool isSuffixIcon;
-  final IconData suffixIcon;
+  final IconData? suffixIcon;
 
   const SmartTextInput({
     super.key,
@@ -31,7 +31,7 @@ class SmartTextInput extends StatelessWidget {
     this.otpDigit = 6,
     this.isOtp = false,
     this.isSuffixIcon = false,
-    required this.suffixIcon,
+    this.suffixIcon,
   });
 
   @override
