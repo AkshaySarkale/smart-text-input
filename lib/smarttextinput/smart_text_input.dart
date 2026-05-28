@@ -50,7 +50,7 @@ class SmartTextInput extends StatelessWidget {
     this.focusBorderColor,
     this.errorBorderColor,
     this.autovalidateMode,
-    this.showSuffixIcon=false,
+    this.showSuffixIcon = false,
     this.suffixIcon,
     this.onSuffixTap,
   });
@@ -108,6 +108,12 @@ class SmartTextInput extends StatelessWidget {
           ? minimunPasswordlenght
           : null,
       decoration: InputDecoration(
+        suffixIcon: showSuffixIcon && suffixIcon != null
+            ? IconButton(
+          onPressed: onSuffixTap,
+          icon: Icon(suffixIcon),
+        )
+            : null,
         counterText: showCounterText ? null : "",
         prefixIcon: showprefixIcon && prefixIcon != null
             ? Icon(prefixIcon)
