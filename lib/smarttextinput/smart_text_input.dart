@@ -51,7 +51,7 @@ class SmartTextInput extends StatelessWidget {
           ? otpDigit
           : null,
       decoration: InputDecoration(
-        prefixIcon: showprefixIcon
+        prefixIcon: showprefixIcon && prefixIcon !=null
             ? Icon(prefixIcon)
             : isGmail
             ? const Icon(Icons.email_outlined)
