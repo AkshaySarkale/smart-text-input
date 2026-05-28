@@ -29,7 +29,7 @@ class SmartTextInput extends StatelessWidget {
     this.defaultMobileLength = 10,
     this.otpDigit=6,
     this.isOtp=false,
-    this.obscuringCharacter=""
+    this.obscuringCharacter="."
   });
 
   @override
