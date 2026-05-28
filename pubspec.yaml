@@ -1,7 +1,7 @@
 name: library_flutter_smart_text_input
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+homepage: https://github.com/AkshaySarkale/smart-text-input.git
 
 environment:
   sdk: ^3.11.4
