@@ -45,6 +45,7 @@ class SmartTextInput extends StatelessWidget {
           ? TextInputType.number
           : TextInputType.text,
       readOnly: readOnly,
+      minLines: isPassword ? 6 : null,
       maxLength: isMobNumber
           ? defaultMobileLength
           : isOtp
@@ -80,7 +81,7 @@ class SmartTextInput extends StatelessWidget {
             : isPassword
             ? "Enter Password"
             : isMobNumber
-            ? "Enter 10 Digit Mobile Number"
+            ? "Enter $defaultMobileLength Digit Mobile Number"
             : isGmail
             ? "Enter Gmail"
             : null,
