@@ -11,6 +11,9 @@ class SmartTextInput extends StatelessWidget {
   final String labelText;
   final bool readOnly;
   final int defaultMobileLength;
+  final int otpDigit;
+  final bool isOtp;
+  final String obscuringCharacter;
 
   const SmartTextInput({
     super.key,
@@ -24,6 +27,9 @@ class SmartTextInput extends StatelessWidget {
     this.labelText = "",
     this.readOnly = false,
     this.defaultMobileLength = 10,
+    this.otpDigit=6,
+    this.isOtp=false,
+    this.obscuringCharacter=""
   });
 
   @override
@@ -31,13 +37,14 @@ class SmartTextInput extends StatelessWidget {
     return TextField(
       controller: txtCtrl,
       obscureText: isPassword,
+      obscuringCharacter: obscuringCharacter,
       keyboardType: isGmail
           ? TextInputType.emailAddress
           : isMobNumber
           ? TextInputType.number
           : TextInputType.text,
       readOnly: false,
-      maxLength: isMobNumber ? defaultMobileLength : null,
+      maxLength: isMobNumber ? defaultMobileLength : isOtp ? otpDigit : null,
       decoration: InputDecoration(
         hintStyle: TextStyle(
           color: hintTextCol ?? Colors.grey,
